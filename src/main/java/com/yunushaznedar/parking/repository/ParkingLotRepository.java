@@ -1,6 +1,5 @@
 package com.yunushaznedar.parking.repository;
 
-import com.yunushaznedar.parking.entitiy.Parking;
 import com.yunushaznedar.parking.entitiy.ParkingLot;
 import org.springframework.data.repository.CrudRepository;
 

@@ -1,6 +1,7 @@
 package com.yunushaznedar.parking.entitiy;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "VEHICLES")
@@ -16,6 +17,7 @@ public class Vehicle
     @Column(name = "WEIGHT")
     private double weight;
 
+    @NotBlank(message = "Licence plate cannot be null")
     @Column(name = "LICENSE_PLATE")
     private String licencePlate;
 
@@ -56,7 +58,7 @@ public class Vehicle
         this.licencePlate = licencePlate;
     }
 
-    public Vehicle(int id, double height, double weight, String licencePlate) {
+    public Vehicle(int id, double height, double weight, @NotBlank(message = "Licence plate cannot be null") String licencePlate) {
         this.id = id;
         this.height = height;
         this.weight = weight;

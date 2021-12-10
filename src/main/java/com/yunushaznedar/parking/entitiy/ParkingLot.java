@@ -2,6 +2,7 @@ package com.yunushaznedar.parking.entitiy;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "PARKING_LOTS")
@@ -11,9 +12,11 @@ public class ParkingLot
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @NotBlank(message = "Lot name cannot be null")
     @Column(name = "LOT_NAME")
     private String name;
 
+    @NotBlank(message = "Lot floor cannot be null")
     @Column(name = "FLOOR")
     private String floor;
 
@@ -26,6 +29,7 @@ public class ParkingLot
     @Column(name = "LOT_PRICE")
     private double price;
 
+    @NotBlank(message = "Lot empty status cannot be null")
     @Column(name = "IS_EMPTY")
     private String isEmpty;
 
@@ -33,7 +37,6 @@ public class ParkingLot
     public ParkingLot() {
 
     }
-
 
 
     public int getId() {
@@ -92,7 +95,8 @@ public class ParkingLot
         this.isEmpty = isEmpty;
     }
 
-    public ParkingLot(String name, String floor, double height, double weight, double price, String isEmpty) {
+    public ParkingLot(int id, @NotBlank(message = "Lot name cannot be null") String name, @NotBlank(message = "Lot floor cannot be null") String floor, double height, double weight, double price, @NotBlank(message = "Lot empty status cannot be null") String isEmpty) {
+        this.id = id;
         this.name = name;
         this.floor = floor;
         this.height = height;

@@ -40,4 +40,9 @@ public class ApiExceptionHandler {
         return new ResponseEntity<>("Vehicle is already checked-in.", HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler({VehicleNotFoundException.class})
+    public ResponseEntity<String> vehicleNotFoundException()
+    {
+        return new ResponseEntity<>("Vehicle not found.", HttpStatus.NOT_FOUND);
+    }
 }

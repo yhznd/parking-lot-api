@@ -1,14 +1,9 @@
 package com.yunushaznedar.parking.service;
 
 
-import com.yunushaznedar.parking.entitiy.Parking;
 import com.yunushaznedar.parking.entitiy.ParkingLot;
 import com.yunushaznedar.parking.entitiy.Vehicle;
-import com.yunushaznedar.parking.exceptionhandler.ParkingLotNotFoundException;
 import com.yunushaznedar.parking.repository.ParkingLotRepository;
-import com.yunushaznedar.parking.repository.ParkingRepository;
-import com.yunushaznedar.parking.repository.VehicleRepository;
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,19 +13,19 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
+import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)
 @SpringBootTest
-public class ParkServiceTest
+public class ParkServiceUnitTest
 {
 
     @Mock
@@ -42,11 +37,6 @@ public class ParkServiceTest
     private static LocalDateTime checkInTime;
     private static LocalDateTime checkOutTime;
 
-    @Before
-    public void setup()
-    {
-        MockitoAnnotations.initMocks(this); //without this you will get NPE
-    }
 
     @BeforeAll
     public static void init()
@@ -57,11 +47,26 @@ public class ParkServiceTest
 
     @ParameterizedTest
     @ValueSource(doubles = {0.3,0.5,1.2})
-    @DisplayName("Calculate Price Test")
+    @DisplayName("Calculate Price Service Test")
     public void calculatePriceTest(double unitPrice)
     {
-        int minutes = (int) ChronoUnit.MINUTES.between(checkInTime, checkOutTime);
-        assertEquals(minutes*unitPrice,parkingService.calculatePrice(checkInTime,checkOutTime,unitPrice));
+        int seconds = (int) ChronoUnit.SECONDS.between(checkInTime, checkOutTime);
+        assertEquals(seconds*unitPrice,parkingService.calculatePrice(checkInTime,checkOutTime,unitPrice));
+    }
+
+    @Test
+    @DisplayName("Find Suitable Lot Service Test")
+    public void testSuitableLot()
+    {
+        Vehicle vehicle=new Vehicle(1,1.7,100.4,"34DMD45");
+        ParkingLot parkingLotC1=new ParkingLot(1,"C1","C",3.2,400,0.6,"T");
+        ParkingLot parkingLotC2=new ParkingLot(2,"C2","C",2,100,0.4,"T");
+
+        List<ParkingLot> parkingLotList = Arrays.asList(parkingLotC1,parkingLotC2);
+        when(parkingLotRepository.findAllByHeightGreaterThanEqual(vehicle.getHeight())).thenReturn(parkingLotList);
+
+        assertEquals(parkingLotC1.getName(),parkingService.findSuitableLot(vehicle).getName());
+
     }
 
 

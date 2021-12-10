@@ -11,13 +11,11 @@ public class VehicleService {
     @Autowired
     private VehicleRepository vehicleRepository;
 
-
     public Iterable<Vehicle> getVehicles() {
         return vehicleRepository.findAll();
     }
 
-    public Vehicle createVehicle(@RequestBody Vehicle vehicle)
-    {
+    public Vehicle createVehicle(@RequestBody Vehicle vehicle) {
         return vehicleRepository.save(vehicle);
     }
 
