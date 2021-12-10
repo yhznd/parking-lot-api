@@ -31,7 +31,7 @@ In this API, there are 3 main services:
 - You can get all parking lots list. **GET api/v1/api/v1/parking/**
 - You can get current parking list. **GET api/v1/api/v1/parking/current**
 - You can search the parking history record with licence plate. **GET api/v1/api/v1/parking_lot/get/{licence_plate}**
-- You can check-in to parking. The pricing will be starting with current time. **POST api/v1/api/v1/checkin/**
+- You can check-in to parking. The pricing will be starting with current time. **POST api/v1/api/v1/checkin**
 - You can check-out from parking with parking ID. **PUT api/v1/api/v1/checkout/{id}**
 
 
