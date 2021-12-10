@@ -1,4 +1,4 @@
-package com.yunushaznedar.parking.service.impl;
+package com.yunushaznedar.parking.service;
 
 import com.yunushaznedar.parking.entitiy.ParkingLot;
 import com.yunushaznedar.parking.repository.ParkingLotRepository;
@@ -12,15 +12,14 @@ public class ParkingLotService
     @Autowired
     private ParkingLotRepository parkingLotRepository;
 
-
     public Iterable<ParkingLot> getParkingLots() {
         return parkingLotRepository.findAll();
     }
 
     public ParkingLot createParkingLot(@RequestBody ParkingLot parkingLot)
     {
-
         return parkingLotRepository.save(parkingLot);
     }
+
 
 }

@@ -9,5 +9,9 @@ import java.util.Optional;
 
 public interface ParkingLotRepository extends CrudRepository<ParkingLot,Integer>
 {
-    List<ParkingLot> findAllByHeightLessThanEqual(double vehicleHeight);
+    List<ParkingLot> findAllByHeightGreaterThanEqual(double vehicleHeight);
+
+    Optional<ParkingLot> findPriceByName(String lotName);
+
+
 }

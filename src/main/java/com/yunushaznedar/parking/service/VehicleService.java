@@ -1,4 +1,4 @@
-package com.yunushaznedar.parking.service.impl;
+package com.yunushaznedar.parking.service;
 
 import com.yunushaznedar.parking.entitiy.Vehicle;
 import com.yunushaznedar.parking.repository.VehicleRepository;

@@ -1,20 +1,21 @@
 package com.yunushaznedar.parking.entitiy;
 
 
-import com.yunushaznedar.parking.service.IParkingLotService;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "PARKING_LOTS")
-public class ParkingLot implements IParkingLotService
+public class ParkingLot
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int lotId;
+    private int id;
 
     @Column(name = "LOT_NAME")
     private String name;
+
+    @Column(name = "FLOOR")
+    private String floor;
 
     @Column(name = "LOT_HEIGHT")
     private double height;
@@ -25,16 +26,22 @@ public class ParkingLot implements IParkingLotService
     @Column(name = "LOT_PRICE")
     private double price;
 
+    @Column(name = "IS_EMPTY")
+    private String isEmpty;
+
 
     public ParkingLot() {
 
     }
 
-    public ParkingLot(String name, double height, double weight, double price) {
-        this.name = name;
-        this.height = height;
-        this.weight = weight;
-        this.price = price;
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -43,6 +50,14 @@ public class ParkingLot implements IParkingLotService
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getFloor() {
+        return floor;
+    }
+
+    public void setFloor(String floor) {
+        this.floor = floor;
     }
 
     public double getHeight() {
@@ -69,17 +84,21 @@ public class ParkingLot implements IParkingLotService
         this.price = price;
     }
 
-
-    @Override
-    public void addVehicleToLot(double vehicleWeight)
-    {
-        setWeight(getWeight()-vehicleWeight);
+    public String getIsEmpty() {
+        return isEmpty;
     }
 
-    @Override
-    public void removeVehicleToLot(double vehicleWeight)
-    {
-        setWeight(getWeight()+vehicleWeight);
+    public void setIsEmpty(String isEmpty) {
+        this.isEmpty = isEmpty;
+    }
+
+    public ParkingLot(String name, String floor, double height, double weight, double price, String isEmpty) {
+        this.name = name;
+        this.floor = floor;
+        this.height = height;
+        this.weight = weight;
+        this.price = price;
+        this.isEmpty = isEmpty;
     }
 }
 

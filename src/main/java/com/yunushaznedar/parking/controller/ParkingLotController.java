@@ -2,7 +2,7 @@ package com.yunushaznedar.parking.controller;
 
 
 import com.yunushaznedar.parking.entitiy.ParkingLot;
-import com.yunushaznedar.parking.service.impl.ParkingLotService;
+import com.yunushaznedar.parking.service.ParkingLotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -8,4 +8,6 @@ import java.util.Optional;
 public interface ParkingRepository extends CrudRepository<Parking,Integer>
 {
     Parking findByVehicleLicencePlate(String vehicleLicencePlate);
+
+    Optional<Parking> getParkingByParkingId(int parkingId);
 }
