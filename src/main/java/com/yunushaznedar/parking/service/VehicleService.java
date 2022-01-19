@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.Optional;
+
 @Service
 public class VehicleService {
     @Autowired
@@ -17,6 +19,11 @@ public class VehicleService {
 
     public Vehicle createVehicle(@RequestBody Vehicle vehicle) {
         return vehicleRepository.save(vehicle);
+    }
+
+    public Optional<Vehicle> findVehicleByPlate(String licencePlate)
+    {
+        return vehicleRepository.getVehicleByLicencePlate(licencePlate);
     }
 
 }

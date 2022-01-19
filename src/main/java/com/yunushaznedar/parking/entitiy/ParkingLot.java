@@ -31,7 +31,7 @@ public class ParkingLot
 
     @NotBlank(message = "Lot empty status cannot be null")
     @Column(name = "IS_EMPTY")
-    private String isEmpty;
+    private boolean isEmpty;
 
 
     public ParkingLot() {
@@ -87,15 +87,15 @@ public class ParkingLot
         this.price = price;
     }
 
-    public String getIsEmpty() {
+    public boolean isEmpty() {
         return isEmpty;
     }
 
-    public void setIsEmpty(String isEmpty) {
-        this.isEmpty = isEmpty;
+    public void setEmpty(boolean empty) {
+        isEmpty = empty;
     }
 
-    public ParkingLot(int id, @NotBlank(message = "Lot name cannot be null") String name, @NotBlank(message = "Lot floor cannot be null") String floor, double height, double weight, double price, @NotBlank(message = "Lot empty status cannot be null") String isEmpty) {
+    public ParkingLot(int id, @NotBlank(message = "Lot name cannot be null") String name, @NotBlank(message = "Lot floor cannot be null") String floor, double height, double weight, double price, @NotBlank(message = "Lot empty status cannot be null") boolean isEmpty) {
         this.id = id;
         this.name = name;
         this.floor = floor;

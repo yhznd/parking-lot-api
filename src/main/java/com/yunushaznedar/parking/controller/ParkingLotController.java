@@ -31,7 +31,7 @@ public class ParkingLotController {
     {
         List<ParkingLot> result = new ArrayList<>();
         parkingLotService.getParkingLots().forEach(result::add);
-        result=result.stream().filter(parking -> parking.getIsEmpty().equals("T")).collect(Collectors.toList());
+        result=result.stream().filter(parking -> parking.isEmpty()).collect(Collectors.toList());
         return result;
     }
 
@@ -40,7 +40,7 @@ public class ParkingLotController {
     {
         List<ParkingLot> result = new ArrayList<>();
         parkingLotService.getParkingLots().forEach(result::add);
-        result=result.stream().filter(parking -> parking.getIsEmpty().equals("F")).collect(Collectors.toList());
+        result=result.stream().filter(parking -> !parking.isEmpty()).collect(Collectors.toList());
         return result;
     }
 

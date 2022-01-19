@@ -2,7 +2,7 @@
 
 # Tech Stack
 
-- Java 8
+- Java 11
 - Spring Boot v2.6.1
 - JUnit
 - H2 Database

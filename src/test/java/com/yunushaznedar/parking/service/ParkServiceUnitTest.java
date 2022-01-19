@@ -3,13 +3,11 @@ package com.yunushaznedar.parking.service;
 
 import com.yunushaznedar.parking.entitiy.ParkingLot;
 import com.yunushaznedar.parking.entitiy.Vehicle;
-import com.yunushaznedar.parking.repository.ParkingLotRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -29,7 +27,7 @@ public class ParkServiceUnitTest
 {
 
     @Mock
-    private static ParkingLotRepository parkingLotRepository;
+    private static ParkingLotService parkingLotService;
 
     @InjectMocks
     private static ParkingService parkingService;
@@ -59,11 +57,11 @@ public class ParkServiceUnitTest
     public void testSuitableLot()
     {
         Vehicle vehicle=new Vehicle(1,1.7,100.4,"34DMD45");
-        ParkingLot parkingLotC1=new ParkingLot(1,"C1","C",3.2,400,0.6,"T");
-        ParkingLot parkingLotC2=new ParkingLot(2,"C2","C",2,100,0.4,"T");
+        ParkingLot parkingLotC1=new ParkingLot(1,"C1","C",3.2,400,0.6,true);
+        ParkingLot parkingLotC2=new ParkingLot(2,"C2","C",2,100,0.4,true);
 
         List<ParkingLot> parkingLotList = Arrays.asList(parkingLotC1,parkingLotC2);
-        when(parkingLotRepository.findAllByHeightGreaterThanEqual(vehicle.getHeight())).thenReturn(parkingLotList);
+        when(parkingLotService.findAllByHeightGreaterThanEqual(vehicle)).thenReturn(parkingLotList);
 
         assertEquals(parkingLotC1.getName(),parkingService.findSuitableLot(vehicle).getName());
 
