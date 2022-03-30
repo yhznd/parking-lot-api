@@ -3,6 +3,7 @@ package com.yunushaznedar.parking.entitiy;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "PARKING_LOTS")
@@ -29,7 +30,7 @@ public class ParkingLot
     @Column(name = "LOT_PRICE")
     private double price;
 
-    @NotBlank(message = "Lot empty status cannot be null")
+    @NotNull(message = "Lot empty status cannot be null")
     @Column(name = "IS_EMPTY")
     private boolean isEmpty;
 
@@ -91,11 +92,11 @@ public class ParkingLot
         return isEmpty;
     }
 
-    public void setEmpty(boolean empty) {
-        isEmpty = empty;
+    public void setEmpty(boolean isEmpty) {
+        this.isEmpty = isEmpty;
     }
 
-    public ParkingLot(int id, @NotBlank(message = "Lot name cannot be null") String name, @NotBlank(message = "Lot floor cannot be null") String floor, double height, double weight, double price, @NotBlank(message = "Lot empty status cannot be null") boolean isEmpty) {
+    public ParkingLot(int id, @NotBlank(message = "Lot name cannot be null") String name, @NotBlank(message = "Lot floor cannot be null") String floor, double height, double weight, double price, @NotNull(message = "Lot empty status cannot be null") boolean isEmpty) {
         this.id = id;
         this.name = name;
         this.floor = floor;
